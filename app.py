@@ -1,5 +1,3 @@
-# app.py  — Cleaned-up, Professional WhatsApp Chat Analyzer
-
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -7,12 +5,12 @@ import seaborn as sns
 import preprocessor
 import helper
 
-# ---------- Page & Theme ----------
+#  Page & Theme 
 st.set_page_config(page_title="WhatsApp Chat Analyzer", layout="wide")
 sns.set_theme(style="whitegrid")
 sns.set_palette("Blues_r")
 
-# ---------- Custom Styling ----------
+#  Custom Styling 
 st.markdown(
     """
     <style>
@@ -74,12 +72,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------- Sidebar ----------
+#  Sidebar 
 st.sidebar.header("WhatsApp Chat Analyzer")
 uploaded_file = st.sidebar.file_uploader("Upload exported chat (.txt)", type=["txt"])
 
 if uploaded_file is None:
-    # ---------- Empty State ----------
+    #  Empty State 
     st.title("WhatsApp Chat Analyzer")
     st.write(
         "Upload your exported WhatsApp chat text file to explore timelines, activity patterns, "
@@ -133,7 +131,7 @@ if uploaded_file is None:
     )
 
 else:
-    # ---------- Show File Disclaimer in Sidebar ----------
+    #  Show File Disclaimer in Sidebar 
     st.sidebar.markdown(
         f"""
         <div style="background:#1F2937; border-left:4px solid #3B82F6; 
@@ -148,7 +146,7 @@ else:
         unsafe_allow_html=True
     )
 
-    # ---------- Parse & Prepare ----------
+    #  Parse & Prepare 
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
 
@@ -167,7 +165,7 @@ else:
 
     st.title("Chat Overview")
 
-    # ---------- Show File Disclaimer in Main Dashboard ----------
+    #   File Disclaimer in Main Dashboard 
     st.markdown(
         f"""
         <div style="background:#F3F4F6; border-left:4px solid #1E3A8A; 
@@ -190,7 +188,7 @@ else:
             unsafe_allow_html=True,
         )
 
-    # ---------- Dashboard ----------
+    #  Dashboard 
     if run:
         # Overview metrics
         num_messages, words, num_media_messages, num_links = helper.fetch_stats(selected_user, df)
@@ -225,7 +223,7 @@ else:
             ["Timelines", "Activity Maps", "Participants", "Text Analysis", "Emojis"]
         )
 
-        # ----- Tab 1: Timelines -----
+        #  Tab 1: Timelines 
         with tab1:
             col1, col2 = st.columns(2)
             with col1:
@@ -243,7 +241,7 @@ else:
                 plt.xticks(rotation=90)
                 st.pyplot(fig)
 
-        # ----- Tab 2: Activity Maps -----
+        #  Tab 2: Activity Maps 
         with tab2:
             c1, c2 = st.columns(2)
             with c1:
@@ -265,7 +263,7 @@ else:
             sns.heatmap(user_heatmap, ax=ax)
             st.pyplot(fig)
 
-        # ----- Tab 3: Participants -----
+        #  Tab 3: Participants 
         with tab3:
             if selected_user == "Overall":
                 st.markdown("#### Most active users")
@@ -281,7 +279,7 @@ else:
             else:
                 st.info("Switch participant to ‘Overall’ in the sidebar to view group-level most active users.")
 
-        # ----- Tab 4: Text Analysis -----
+        #  Tab 4: Text Analysis 
         with tab4:
             st.markdown("#### Word cloud")
             df_wc = helper.create_wordcloud(selected_user, df)
@@ -297,7 +295,7 @@ else:
             ax.invert_yaxis()
             st.pyplot(fig)
 
-        # ----- Tab 5: Emojis -----
+        #  Tab 5: Emojis 
         with tab5:
             emoji_df = helper.emoji_helper(selected_user, df)
             c1, c2 = st.columns([1, 1])
@@ -309,7 +307,7 @@ else:
                     ax.pie(emoji_df[1].head(), labels=emoji_df[0].head(), autopct="%0.2f")
                     st.pyplot(fig)
 
-        # ---------- Methodology ----------
+        #  Methodology 
         with st.expander("Methodology details"):
             st.markdown(
                 """
