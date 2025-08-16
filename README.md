@@ -4,12 +4,12 @@ A Streamlit web app that analyzes exported WhatsApp chats and generates insights
 
 ## Features
 
-Timelines – Monthly and daily trends of messages.
-Activity Maps – Most active days, months, and weekly heatmaps.
-Participants – Identify the most active contributors.
-Word Analysis – Word cloud and most frequent words (with stopword filtering).
-Emoji Analysis – Frequency and share of emojis used.
-Data Privacy – Uploaded files are processed only in-memory during the session. No data is stored or transmitted externally.
+ Timelines – Monthly and daily trends of messages.
+ Activity Maps – Most active days, months, and weekly heatmaps.
+ Participants – Identify the most active contributors.
+ Word Analysis – Word cloud and most frequent words (with stopword filtering). 
+ Emoji Analysis – Frequency and share of emojis used.
+ Data Privacy – Uploaded files are processed only in-memory during the session. No data is stored or transmitted externally.
 
 ## Project Structure
 ├── app.py               Main Streamlit app
