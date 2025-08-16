@@ -4,7 +4,7 @@ A Streamlit web app that analyzes exported WhatsApp chats and generates insights
 
 ## Features
 
-Timelines – Monthly and daily trends of messages.
+Timelines – Monthly and daily trends of messages. \n
 Activity Maps – Most active days, months, and weekly heatmaps.
 Participants – Identify the most active contributors.
 Word Analysis – Word cloud and most frequent words (with stopword filtering).
