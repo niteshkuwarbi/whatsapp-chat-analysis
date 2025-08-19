@@ -258,10 +258,18 @@ else:
                 plt.xticks(rotation=90)
                 st.pyplot(fig)
             st.markdown("#### Weekly activity heatmap")
+            # user_heatmap = helper.activity_heatmap(selected_user, df)
+            # fig, ax = plt.subplots()
+            # sns.heatmap(user_heatmap, ax=ax)
+            # st.pyplot(fig)
+
             user_heatmap = helper.activity_heatmap(selected_user, df)
-            fig, ax = plt.subplots()
-            sns.heatmap(user_heatmap, ax=ax)
-            st.pyplot(fig)
+            if user_heatmap.empty:
+                st.warning("No activity data available to generate heatmap for this selection.")
+            else:
+                fig, ax = plt.subplots()
+                sns.heatmap(user_heatmap, ax=ax)
+                st.pyplot(fig)
 
         #  Tab 3: Participants 
         with tab3:
