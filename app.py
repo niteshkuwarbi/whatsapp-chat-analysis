@@ -24,7 +24,7 @@ else:
 #  Custom Styling 
 st.markdown(
     """
-    <style id="custom-css-v4">
+    <style id="custom-css-v5">
         /* Sidebar fixed branding */
         [data-testid="stSidebar"] {
             background-color: #1E3A8A !important; /* Navy background */
@@ -47,28 +47,30 @@ st.markdown(
             font-weight: 500;
         }
 
-        /* Fix drag-and-drop placeholder text (sidebar uploader) */
-        [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] div,
-        [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span {
-            color: #F9FAFB !important;   /* White for sidebar */
+        /* --- Drag & Drop Zone (consistent in both light and dark mode) --- */
+        [data-testid="stFileUploaderDropzone"] {
+            background-color: #111827 !important; /* Dark gray box */
+            border: 2px dashed #1E3A8A !important; /* Navy border */
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        /* Drag & drop text inside box */
+        [data-testid="stFileUploaderDropzone"] div,
+        [data-testid="stFileUploaderDropzone"] span {
+            color: #F9FAFB !important;   /* White text */
             font-weight: 500;
             opacity: 1 !important;
         }
 
-        /* File uploader in main page (if used outside sidebar) */
-        [data-testid="stFileUploader"] label,
-        [data-testid="stFileUploader"] div,
-        [data-testid="stFileUploader"] span {
-            color: #111827 !important;  /* Dark gray for light background */
-            font-weight: 500;
-        }
-
-        /* Fix drag-and-drop placeholder text (main page uploader) */
-        .block-container [data-testid="stFileUploaderDropzone"] div,
-        .block-container [data-testid="stFileUploaderDropzone"] span {
-            color: #111827 !important;   /* Dark gray on light background */
-            font-weight: 500;
-            opacity: 1 !important;
+        /* Browse file button (inside drag-drop) */
+        [data-testid="stFileUploaderDropzone"] button {
+            background-color: #FFFFFF !important; /* White button */
+            color: #1E3A8A !important;            /* Navy text */
+            font-weight: 600;
+            border: 2px solid #1E3A8A !important;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
         }
 
         /* Main page background */
