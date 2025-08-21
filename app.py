@@ -22,15 +22,13 @@ else:
     sns.set_theme(style="whitegrid")
 
 #  Custom Styling 
-#  Theme-Aware Custom Styling 
-
 st.markdown(
     """
     <style>
         /* Sidebar fixed branding */
         [data-testid="stSidebar"] {
             background-color: #1E3A8A !important; /* Navy background */
-            color: #F9FAFB !important;           /* White text */
+            color: #F9FAFB !important;            /* White text */
         }
 
         [data-testid="stSidebar"] h1,
@@ -49,6 +47,12 @@ st.markdown(
             font-weight: 500;
         }
 
+        /* Fix drag-and-drop placeholder text (sidebar uploader) */
+        [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span {
+            color: #F9FAFB !important;   /* White for sidebar */
+            font-weight: 500;
+        }
+
         /* File uploader in main page (if used outside sidebar) */
         [data-testid="stFileUploader"] label,
         [data-testid="stFileUploader"] div,
@@ -57,14 +61,8 @@ st.markdown(
             font-weight: 500;
         }
 
-        /* Fix drag-and-drop placeholder text inside uploader */
-        [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] div {
-            color: #F9FAFB !important;   /* White text for sidebar */
-            font-weight: 500;
-        }
-
-        /* Optional: main page uploader placeholder */
-        [data-testid="stFileUploaderDropzone"] div {
+        /* Fix drag-and-drop placeholder text (main page uploader) */
+        .block-container [data-testid="stFileUploaderDropzone"] span {
             color: #111827 !important;   /* Dark gray on light background */
             font-weight: 500;
         }
@@ -81,7 +79,7 @@ st.markdown(
         /* Section cards */
         .section-card {
             background: var(--secondary-background-color);
-            border-left: 6px solid #1E3A8A; /* keep your accent blue */
+            border-left: 6px solid #1E3A8A;
             border-radius:14px; 
             padding:18px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
@@ -92,7 +90,7 @@ st.markdown(
         .metric-card {
             background: var(--secondary-background-color);
             border:1px solid #e6eaf1;
-            border-top: 4px solid #3B82F6; /* keep accent */
+            border-top: 4px solid #3B82F6;
             border-radius:12px; 
             padding:16px; 
             box-shadow: 0 2px 6px rgba(0,0,0,0.06);
@@ -101,7 +99,7 @@ st.markdown(
 
         /* Headings */
         h1, h2, h3, h4 {
-            color: #1E3A8A; /* accent blue stays */
+            color: #1E3A8A;
         }
 
         /* Captions / notes */
@@ -113,11 +111,11 @@ st.markdown(
 
         /* Sidebar button styling */
         [data-testid="stSidebar"] .stButton > button {
-            background-color: #FFFFFF !important;  /* White background */
-            color: #1E3A8A !important;             /* Navy text */
+            background-color: #FFFFFF !important;
+            color: #1E3A8A !important;
             font-weight: 600;
             border-radius: 8px;
-            border: 2px solid #1E3A8A !important;  /* Navy border */
+            border: 2px solid #1E3A8A !important;
             padding: 0.6rem 1.2rem;
         }
 
@@ -130,6 +128,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 #  Sidebar 
 st.sidebar.header("WhatsApp Chat Analyzer")
