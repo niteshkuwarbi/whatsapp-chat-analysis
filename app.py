@@ -6,67 +6,107 @@ import preprocessor
 import helper
 
 #  Page & Theme 
-st.set_page_config(page_title="WhatsApp Chat Analyzer", layout="wide")
-sns.set_theme(style="whitegrid")
-sns.set_palette("Blues_r")
+# st.set_page_config(page_title="WhatsApp Chat Analyzer", layout="wide")
+# sns.set_theme(style="whitegrid")
+# sns.set_palette("Blues_r")
+
+# Detect theme (light/dark)
+is_dark_theme = st.get_option("theme.base") == "dark"
+
+# Apply plot styles based on theme
+if is_dark_theme:
+    plt.style.use("dark_background")
+    sns.set_theme(style="darkgrid")
+else:
+    plt.style.use("default")
+    sns.set_theme(style="whitegrid")
 
 #  Custom Styling 
+#  Theme-Aware Custom Styling 
+
 st.markdown(
     """
     <style>
-      /* Sidebar */
-      [data-testid="stSidebar"] {
-        background-color: #111827;
-      }
-      [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
-      [data-testid="stSidebar"] h3, [data-testid="stSidebar"] label, 
-      [data-testid="stSidebar"] span {
-        color: #F9FAFB !important;
-      }
-      [data-testid="stSidebar"] [data-testid="stFileUploader"] label,
-      [data-testid="stSidebar"] [data-testid="stFileUploader"] div,
-      [data-testid="stSidebar"] [data-testid="stFileUploader"] span {
-        color: #F9FAFB !important;
-        font-weight: 500;
-      }
+        /* Sidebar with fixed navy background */
+        [data-testid="stSidebar"] {
+            background-color: #1E3A8A !important; /* Navy Blue */
+            color: #F9FAFB !important;
+        }
 
-      /* Main page background */
-      .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        max-width: 1200px;
-        background-color: #F9FAFB;
-      }
+        [data-testid="stSidebar"] h1, 
+        [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, 
+        [data-testid="stSidebar"] label, 
+        [data-testid="stSidebar"] span {
+            color: #F9FAFB !important;
+        }
 
-      /* Section cards */
-      .section-card {
-        background:#ffffff;
-        border-left: 6px solid #1E3A8A;
-        border-radius:14px; 
-        padding:18px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      }
+        [data-testid="stSidebar"] [data-testid="stFileUploader"] label,
+        [data-testid="stSidebar"] [data-testid="stFileUploader"] div,
+        [data-testid="stSidebar"] [data-testid="stFileUploader"] span {
+            color: #F9FAFB !important;
+            font-weight: 500;
+        }
+
+        /* Main page background */
+        .block-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            max-width: 1200px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Section cards */
+        .section-card {
+            background: var(--secondary-background-color);
+            border-left: 6px solid #1E3A8A; /* keep your accent blue */
+            border-radius:14px; 
+            padding:18px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            color: var(--text-color);
+        }
       
-      /* Metric cards */
-      .metric-card {
-        background:#ffffff;
-        border:1px solid #e6eaf1;
-        border-top: 4px solid #3B82F6;
-        border-radius:12px; 
-        padding:16px; 
-        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-      }
+        /* Metric cards */
+        .metric-card {
+            background: var(--secondary-background-color);
+            border:1px solid #e6eaf1;
+            border-top: 4px solid #3B82F6; /* keep accent */
+            border-radius:12px; 
+            padding:16px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            color: var(--text-color);
+        }
 
-      /* Headings */
-      h1, h2, h3, h4 {
-        color: #1E3A8A;
-      }
+        /* Headings */
+        h1, h2, h3, h4 {
+            color: #1E3A8A; /* accent blue stays */
+        }
 
-      /* Captions / notes */
-      .caption, .small-note {
-        color:#6B7280; 
-        font-size:0.92rem;
-      }
+        /* Captions / notes */
+        .caption, .small-note {
+            color: var(--text-color); 
+            opacity: 0.7;
+            font-size:0.92rem;
+        }
+
+        /* Sidebar button styling */
+        [data-testid="stSidebar"] .stButton > button {
+            background-color: #FFFFFF !important;  /* White background */
+            color: #1E3A8A !important;             /* Navy text */
+            font-weight: 600;
+            border-radius: 8px;
+            border: 2px solid #1E3A8A !important;  /* Navy border */
+            padding: 0.6rem 1.2rem;
+        }
+
+        /* Keep hover same (no flicker) */
+        [data-testid="stSidebar"] .stButton > button:hover {
+            background-color: #FFFFFF !important;
+            color: #1E3A8A !important;
+        }
+
+
     </style>
     """,
     unsafe_allow_html=True
