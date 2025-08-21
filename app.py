@@ -27,24 +27,33 @@ else:
 st.markdown(
     """
     <style>
-        /* Sidebar with fixed navy background */
+        /* Sidebar fixed branding */
         [data-testid="stSidebar"] {
-            background-color: #1E3A8A !important; /* Navy Blue */
-            color: #F9FAFB !important;
+            background-color: #1E3A8A !important; /* Navy background */
+            color: #F9FAFB !important;           /* White text */
         }
 
-        [data-testid="stSidebar"] h1, 
-        [data-testid="stSidebar"] h2, 
-        [data-testid="stSidebar"] h3, 
-        [data-testid="stSidebar"] label, 
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3,
+        [data-testid="stSidebar"] label,
         [data-testid="stSidebar"] span {
             color: #F9FAFB !important;
         }
 
+        /* File uploader inside sidebar */
         [data-testid="stSidebar"] [data-testid="stFileUploader"] label,
         [data-testid="stSidebar"] [data-testid="stFileUploader"] div,
         [data-testid="stSidebar"] [data-testid="stFileUploader"] span {
-            color: #F9FAFB !important;
+            color: #F9FAFB !important;   /* White text */
+            font-weight: 500;
+        }
+
+        /* File uploader in main page (if used outside sidebar) */
+        [data-testid="stFileUploader"] label,
+        [data-testid="stFileUploader"] div,
+        [data-testid="stFileUploader"] span {
+            color: #111827 !important;  /* Dark gray for light background */
             font-weight: 500;
         }
 
@@ -105,8 +114,6 @@ st.markdown(
             background-color: #FFFFFF !important;
             color: #1E3A8A !important;
         }
-
-
     </style>
     """,
     unsafe_allow_html=True
