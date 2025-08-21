@@ -24,7 +24,7 @@ else:
 #  Custom Styling 
 st.markdown(
     """
-    <style id="custom-css-v3">
+    <style id="custom-css-v4">
         /* Sidebar fixed branding */
         [data-testid="stSidebar"] {
             background-color: #1E3A8A !important; /* Navy background */
