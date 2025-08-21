@@ -57,6 +57,18 @@ st.markdown(
             font-weight: 500;
         }
 
+        /* Fix drag-and-drop placeholder text inside uploader */
+        [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] div {
+            color: #F9FAFB !important;   /* White text for sidebar */
+            font-weight: 500;
+        }
+
+        /* Optional: main page uploader placeholder */
+        [data-testid="stFileUploaderDropzone"] div {
+            color: #111827 !important;   /* Dark gray on light background */
+            font-weight: 500;
+        }
+
         /* Main page background */
         .block-container {
             padding-top: 2rem;
