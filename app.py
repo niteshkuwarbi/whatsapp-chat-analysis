@@ -24,7 +24,7 @@ else:
 #  Custom Styling 
 st.markdown(
     """
-    <style>
+    <style id="custom-css-v3">
         /* Sidebar fixed branding */
         [data-testid="stSidebar"] {
             background-color: #1E3A8A !important; /* Navy background */
@@ -48,9 +48,11 @@ st.markdown(
         }
 
         /* Fix drag-and-drop placeholder text (sidebar uploader) */
+        [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] div,
         [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] span {
             color: #F9FAFB !important;   /* White for sidebar */
             font-weight: 500;
+            opacity: 1 !important;
         }
 
         /* File uploader in main page (if used outside sidebar) */
@@ -62,9 +64,11 @@ st.markdown(
         }
 
         /* Fix drag-and-drop placeholder text (main page uploader) */
+        .block-container [data-testid="stFileUploaderDropzone"] div,
         .block-container [data-testid="stFileUploaderDropzone"] span {
             color: #111827 !important;   /* Dark gray on light background */
             font-weight: 500;
+            opacity: 1 !important;
         }
 
         /* Main page background */
@@ -316,11 +320,6 @@ else:
                 plt.xticks(rotation=90)
                 st.pyplot(fig)
             st.markdown("#### Weekly activity heatmap")
-            # user_heatmap = helper.activity_heatmap(selected_user, df)
-            # fig, ax = plt.subplots()
-            # sns.heatmap(user_heatmap, ax=ax)
-            # st.pyplot(fig)
-
             user_heatmap = helper.activity_heatmap(selected_user, df)
             if user_heatmap.empty:
                 st.warning("No activity data available to generate heatmap for this selection.")
@@ -384,5 +383,3 @@ else:
                 - **Text Analysis:** Removes system messages and media placeholders; applies a Hinglish stopword list before counting.
                 """
             )
-
-# checking redeployment
